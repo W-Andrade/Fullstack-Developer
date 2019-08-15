@@ -35,7 +35,7 @@ Foram selecionados 2 itens do Produto A e 1 item do Produto B, logo teremos 3 it
 ## Diferenciais
 
 * Utilização de docker
-* Load Balance
+* Load Balancer
 * Utilização do Service Discovery e Api Gateway
 * Desenho Arquitetural
 * Escrita de testes
