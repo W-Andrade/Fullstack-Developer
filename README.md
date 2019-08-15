@@ -42,11 +42,13 @@ Foram selecionados 2 itens do Produto A e 1 item do Produto B, logo teremos 3 it
 
 ## Arquivos
 
-Json de Clientes
+**GET Request -> Dados do Cliente e Produtos**
 
-Json de Produtos
+	URL : https://api.myjson.com/bins/tnjfr
+  
+**Arquivos de Design**
 
-Design
+	URL : 
 
 ## Critérios de Avaliação
 
