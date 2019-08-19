@@ -1,0 +1,33 @@
+
+<div class="starter-template">
+        <h2>
+            <!-- <i class="fa fa-cloud"></i> -->
+            Consulta pedido
+        </h2>
+        <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <h6 class="pb-2 mb-0">
+                <img class="icon" src="assets/img/icones/icone-pedidos.png"alt="icon name">
+                Pedidos
+            </h6>
+            <br>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Valor total</th>
+                        <th>Quant. de itens</th>
+                        <th>Valor do frete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pedido of pedidos">
+                        <td>{{ pedido.id }}</td>
+                        <td>{{ pedido.totalItens }}</td>
+                        <td>{{ pedido.quantidade }}</td>
+                        <td>{{ pedido.frete }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
