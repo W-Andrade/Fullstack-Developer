@@ -1,142 +1,146 @@
-<div class="starter-template">
-    <h2>
-        <!-- <i class="fa fa-cloud"></i> -->
-        Novo pedido
-    </h2>
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <h6 class="pb-2 mb-0">
-            <img class="icon" src="assets/img/icones/icone-cliente.png" alt="icon name">
-            Cliente
-        </h6>
-        <br>
-       
-        <form class="form-inline my-2 my-lg-0" #f="ngForm">
-            <div class="input-group">
-                <select class="form-control"  
-                        [(ngModel)]="clienteSelecionado" 
-                        [ngModelOptions]="{standalone: true}">
+<form  #f="ngForm" (ngSubmit)="finalizePedido()">
+    <div class="starter-template">
+        <h2>
+            Novo pedido
+        </h2>
+        <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <h6 class="pb-2 mb-0">
+                <img class="icon" src="assets/img/icones/icone-cliente.png" alt="icon name">
+                Cliente
+            </h6>
+            <br>
+        
+            <div class="form-inline my-2 my-lg-0">
+                <div class="input-group">
+                    <select class="form-control"  
+                    [(ngModel)]="clienteSelecionado" 
+                    [ngModelOptions]="{standalone: true}"
+                    name="selectCliente" #selectCliente="ngModel"
+                    required>
                     <option *ngFor="let cliente of clientes" [ngValue]="cliente">
                         {{ cliente.nome }}
                     </option>
                 </select>
-                <!-- <input class="form-control" type="search" placeholder="Pesquisar um produto" aria-label="Pesquisar">
-                <div class="input-group-append">
-                    <a class="input-group-text">
-                        <img class="icon" src="assets/img/icones/icone-pesquisa.png"alt="icon name">
-                    </a>
-                </div> -->
-            </div>
-        </form>
-    </div>
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <h6 class="pb-2 mb-0">
-            <img class="icon" src="assets/img/icones/icone-carrinho.png"alt="icon name">
-            Carrinho
-        </h6>
-        <br>
-        <form  #f="ngForm" class="form-inline my-2 my-lg-0">
-            <div class="input-group">
-                <select class="form-control"  
-                        [(ngModel)]="produtoSelecionado" 
-                        [ngModelOptions]="{standalone: true}"
-                        (change)="selectProduto(produtoSelecionado)">
-                    <option *ngFor="let produto of produtos" [ngValue]="produto">
-                        {{ produto.nome }}
-                    </option>
-                </select>
-                <!-- <input class="form-control" type="search" placeholder="Pesquisar um produto" aria-label="Pesquisar">
-                <div class="input-group-append">
-                    <a class="input-group-text">
-                        <img class="icon" src="assets/img/icones/icone-pesquisa.png"alt="icon name">
-                    </a>
-                </div> -->
-            </div>
-        </form>
-        <br>
-        <div *ngFor="let item of produtosSelecionado">
-            <div class="border-top border-gray media text-muted pt-3">
-                <!-- <img class="icon" src="assets/img/icones/icone-pesquisa.png"alt="icon name"> -->
-                <!-- <div class="d-inline-flex p-2">Flex item 1</div> -->
-                <div class="row container flex-inline-row-reverse" >
-                    <div class="col-1 d-inline-flex flex-row p-2">
-                        <img class="icon-item" src="{{ item.imagem || 'assets/img/icones/imagem-carrinho-empty-state.png' }}" alt="">
-                    </div>
-                    <div class="col d-flex flex-row p-2">
-                        <div>
-                            <h6 class="item-id">{{ item.codigo }}</h6>
-                            <h4>{{ item.nome }}</h4>
-                        </div>
-                    </div>
-                    <div class="col d-flex flex-row-reverse p-2">
-                        <div class="item-middle">
-                            <h6 style="text-align: right">{{ item.quantidade }} x </h6>
-                            <h6>R$ {{ item.precoUnitario }}</h6>
-                        </div>
-                    </div>
-                    <div class="col-1 d-flex flex-row-reverse p-2">
-                        <a class="item-middle" (click)="removeProduto(item)">
-                            <img class="icon" src="assets/img/icones/icone-apagar.png"alt="icon name">
+                <div *ngIf="selectCliente.invalid" class="msg-danger">*</div>
+                    <!-- <input class="form-control" type="search" placeholder="Pesquisar um produto" aria-label="Pesquisar">
+                    <div class="input-group-append">
+                        <a class="input-group-text">
+                            <img class="icon" src="assets/img/icones/icone-pesquisa.png"alt="icon name">
                         </a>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <h6 class="pb-2 mb-0">
+                <img class="icon" src="assets/img/icones/icone-carrinho.png"alt="icon name">
+                Carrinho
+            </h6>
+            <br>
+            <div class="form-inline my-2 my-lg-0">
+                <div class="input-group">
+                    <select class="form-control"  
+                            [(ngModel)]="produtoSelecionado" 
+                            [ngModelOptions]="{standalone: true}"
+                            (change)="selectProduto(produtoSelecionado)">
+                        <option *ngFor="let produto of produtos" [ngValue]="produto">
+                            {{ produto.nome }}
+                        </option>
+                    </select>
+                    <!-- <input class="form-control" type="search" placeholder="Pesquisar um produto" aria-label="Pesquisar">
+                    <div class="input-group-append">
+                        <a class="input-group-text">
+                            <img class="icon" src="assets/img/icones/icone-pesquisa.png"alt="icon name">
+                        </a>
+                    </div> -->
+                </div>
+            </div>
+            <br>
+            <div *ngFor="let item of produtosSelecionado">
+                <div class="border-top border-gray media text-muted pt-3">
+                    <!-- <img class="icon" src="assets/img/icones/icone-pesquisa.png"alt="icon name"> -->
+                    <!-- <div class="d-inline-flex p-2">Flex item 1</div> -->
+                    <div class="row container flex-inline-row-reverse" >
+                        <div class="col-1 d-inline-flex flex-row p-2">
+                            <img class="icon-item" src="{{ item.imagem || 'assets/img/icones/imagem-carrinho-empty-state.png' }}" alt="">
+                        </div>
+                        <div class="col d-flex flex-row p-2">
+                            <div>
+                                <h6 class="item-id">{{ item.codigo }}</h6>
+                                <h4>{{ item.nome }}</h4>
+                            </div>
+                        </div>
+                        <div class="col d-flex flex-row-reverse p-2">
+                            <div class="item-middle">
+                                <h6 style="text-align: right">{{ item.quantidade }} x </h6>
+                                <h6>R$ {{ item.precoUnitario }}</h6>
+                            </div>
+                        </div>
+                        <div class="col-1 d-flex flex-row-reverse p-2">
+                            <a class="item-middle" (click)="removeProduto(item)">
+                                <img class="icon" src="assets/img/icones/icone-apagar.png"alt="icon name">
+                            </a>
+                        </div>
+                        
                     </div>
-                    
+                </div>
+            </div>
+            <div *ngIf="!produtosSelecionado.length" class="border-top border-gray text-muted pt-3">
+                <div class="align-middle" style="text-align: center">
+                    <img class="icon-empty" src="assets/img/icones/imagem-carrinho-empty-state.png" alt="">
+                    <h4>Carrinho vazio</h4>
+                    <h5>Nenhum produto foi inserido</h5>
                 </div>
             </div>
         </div>
-        <div *ngIf="!produtosSelecionado.length" class="border-top border-gray text-muted pt-3">
-            <div class="align-middle" style="text-align: center">
-                <img class="icon-empty" src="assets/img/icones/imagem-carrinho-empty-state.png" alt="">
-                <h4>Carrinho vazio</h4>
-                <h5>Nenhum produto foi inserido</h5>
+        <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <h6 class="border-bottom border-gray pb-2 mb-0">
+                <img class="icon" src="assets/img/icones/icone-total.png"alt="icon name">
+                Total
+            </h6>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="my-3 p-3 bg-white rounded shadow-sm">
+                        <ul class="list-group">
+                            <li class="list-group-flush d-flex justify-content-between align-items-center">
+                                <h5>Itens</h5>
+                                <span class="badge badge-primary badge-pill">R$ {{ totalItens }}</span>
+                            </li>
+                            <li class="list-group-flush  d-flex justify-content-between align-items-center">
+                                <h5>Frete</h5>
+                                <span class="badge badge-primary badge-pill">R$ {{ totalFrete }}</span>
+                            </li>
+                            <li class="list-group-flush  d-flex justify-content-between align-items-center">
+                                <br>
+                            </li>
+                            <li class="border-top border-gray list-group-flush  d-flex justify-content-between align-items-center">
+                                <h5>Total</h5>
+                                <span class="badge badge-primary badge-pill">R$ {{ totalItens + totalFrete }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="my-3 p-3 bg-white rounded shadow-sm">
+                        <ul class="list-group">
+                            <li class="list-group-flush  d-flex justify-content-between align-items-center">
+                                <button type="button" class="btn btn-success form-control"
+                                type="submit" [disabled]="!(produtoSelecionado && produtosSelecionado.length)">Finalizar pedido</button>
+                            </li>
+                            <li class="list-group-flush  d-flex justify-content-between align-items-center">
+                                <br>
+                            </li>
+                            <li class="border-top border-gray list-group-flush  d-flex justify-content-between align-items-center">
+                                <button type="button" class="btn btn-outline-dark form-control" 
+                                (click)="cleanProduto()">Limpar Carrinho</button>
+                            </li>
+                            <li class="list-group-flush  d-flex justify-content-between align-items-center">
+                                <br>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <h6 class="border-bottom border-gray pb-2 mb-0">
-            <img class="icon" src="assets/img/icones/icone-total.png"alt="icon name">
-            Total
-        </h6>
-        <div class="row">
-            <div class="col-sm">
-                <div class="my-3 p-3 bg-white rounded shadow-sm">
-                    <ul class="list-group">
-                        <li class="list-group-flush d-flex justify-content-between align-items-center">
-                            <h5>Itens</h5>
-                            <span class="badge badge-primary badge-pill">R$ {{ totalItens }}</span>
-                        </li>
-                        <li class="list-group-flush  d-flex justify-content-between align-items-center">
-                            <h5>Frete</h5>
-                            <span class="badge badge-primary badge-pill">R$ {{ totalFrete }}</span>
-                        </li>
-                        <li class="list-group-flush  d-flex justify-content-between align-items-center">
-                            <br>
-                        </li>
-                        <li class="border-top border-gray list-group-flush  d-flex justify-content-between align-items-center">
-                            <h5>Total</h5>
-                            <span class="badge badge-primary badge-pill">R$ {{ totalItens + totalFrete }}</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm">
-                <div class="my-3 p-3 bg-white rounded shadow-sm">
-                    <ul class="list-group">
-                        <li class="list-group-flush  d-flex justify-content-between align-items-center">
-                            <button type="button" class="btn btn-success form-control"
-                            (click)="finalizePedido()">Finalizar pedido</button>
-                        </li>
-                        <li class="list-group-flush  d-flex justify-content-between align-items-center">
-                            <br>
-                        </li>
-                        <li class="border-top border-gray list-group-flush  d-flex justify-content-between align-items-center">
-                            <button type="button" class="btn btn-outline-dark form-control" 
-                            (click)="cleanProduto()">Limpar Carrinho</button>
-                        </li>
-                        <li class="list-group-flush  d-flex justify-content-between align-items-center">
-                            <br>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+</form>
