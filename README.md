@@ -1,64 +1,59 @@
-## Fullstack - Developer 
+## Resumo: 
 
-Parabéns, você passou para a segunda fase do processo seletivo da MáximaTech para desenvolvedor Fullstack (Java + Angular).
-
-## Instruções
-
-1. Criar um fork deste repositório e implementar o aplicativo conforme instruções abaixo.
-2. Abrir um merge request para este repositório para que possamos avaliar o seu código.
-3. Enviar um e-mail para talentoshumanos@maximatech.com.br com:
-4. Assunto: “[Teste Desenvolvedor Web] - Seu nome” 
-5. Corpo do e-mail: Link do Merge request
-
-É hora do show!
-
-## Resumo
-
-Você foi escolhido para escrever uma PoC (Prova de Conceito) de um e-commerce, basicamente o sistema consiste na criação de Pedidos (cliente + produtos + frete).
-Assim, um usuário com acesso ao sistema selecionará a opção e o fluxo de utilização do sistema 
-
-## Seguem os requisitos:
-
-* A stack de tecnologia a ser utilizada é Java (ou Kotlin) + Angular 7 + Spring Boot (com Gradle ou Maven).
-* O sistema é composto por 3 microserviços: Serviço Web (Angular) + Serviço Api  (Spring Boot) + Serviço de Cálculo de Frete (Spring Boot).
-* Banco de dados - NoSQL (MongoDB) ou SQL (PostgreSQL)
-* Tela de listagem dos pedidos
-* Todas as informações (JSONs e Pedidos) precisam ser persistidos no banco de dados escolhido.
-* Documento descrevendo o processo de instalação do sistema
-
-## Microserviço de Cálculo de Frete
-O microserviço de cálculo de frete terá um webservice que  receberá a quantidade de itens que foram selecionados e multiplicará por um valor aleatório entre R$5,00 e R$10,00. Retornando assim o valor calculado.
-
-### Exemplo
-Foram selecionados 2 itens do Produto A e 1 item do Produto B, logo teremos 3 itens. O valor sorteado foi R$ 8,00. Assim: 3 x R$ 8,00 = R$ 24,00.
-
-## Diferenciais
-
-* Utilização de docker
-* Load Balancer
-* Utilização do Service Discovery e Api Gateway
-* Desenho Arquitetural
-* Escrita de testes
-
-## Arquivos
-
-**GET Request -> Dados do Cliente e Produtos**
-
-	URL : https://api.myjson.com/bins/tnjfr
   
-**Arquivos de Design**
 
-	URL : 
+Esse projeto está dividido em 2 microserviços: Serviço web (Angular) + Serviço Api (Spring Boot). 
 
-## Critérios de Avaliação
+  
 
-* Organização do projeto
-* Utilização de padrões arquiteturais
-* Clareza do código
-* Escolha de estruturas e bibliotecas
-* Ausência de crashs e bugs
-* Detalhes de UI
-* Linguagem de programação
+## Rum: 
 
-## Dúvidas
-Entre em contato com talentoshumanos@maximatech.com.br
+  
+
+1. Clonar o repositório localmente. 
+
+2. Configurar a base de dados (postgres) 
+
+3. executar o jar do serviço e-commerce 
+
+4. executar o serviço angular. 
+
+  
+
+## Requisitos: 
+
+  
+
+Para rodar esse projeto localmente e necessário ter uma jvm configurada, uma base de dados postgres instalado e por fim ter em sua maquina o angular cli ou alguma forma de simular um http serve para o front. 
+
+  
+
+### Configurar a base de dados (postgres) 
+
+  
+
+Para configurar o acesso a base na API e-commerce, altere o arquivo application.yml. Seu arquivo de se parecer com o código abaixo. 
+
+  
+
+spring:  
+
+  datasource: 
+
+    url: jdbc:postgresql://localhost:5432/e-commerce 
+
+    username: postgres 
+
+    password: postgres 
+
+    driver-class-name: org.postgresql.Driver 
+
+## Executar o jar do serviço e-commerce 
+
+Após configurar a base dados basta utilizar uma jvm para executar o .jar. Com a jvm devidamente configurada na máquina execute o comando “java -jar <nome-do-jar>”  
+
+## Executar o serviço angular. 
+
+Para executar o serviço angular basta utilizar o comando ng serve do angular cli ou usar outro servidor http, como por exemplo http-serve. 
+
+ 
