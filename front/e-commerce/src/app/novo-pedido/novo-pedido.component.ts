@@ -5,6 +5,7 @@ import { Cliente } from '../core/model/cliente';
 import { Produto } from '../core/model/produto';
 import { Pedido } from '../core/model/pedido';
 import { PedidoService } from '../core/services/pedido.service';
+import { FreteService } from '../core/services/frete.service';
 
 @Component({
   selector: 'app-novo-pedido',
@@ -23,7 +24,11 @@ export class NovoPedidoComponent implements OnInit {
   totalItens = 0;
   totalFrete = 0;
 
-  constructor(private clienteServices: ClienteService, private pedidoServices: PedidoService) { }
+  fretePedido = 0;
+
+  constructor(private clienteServices: ClienteService, 
+              private pedidoServices: PedidoService,
+              private freteServices: FreteService) { }
 
   ngOnInit() {
     this.clienteServices.listarCliente().subscribe((resp) => {
@@ -34,6 +39,14 @@ export class NovoPedidoComponent implements OnInit {
         produto.quantidade = 1;
       })
       this.produtos = resp['produtos'];
+    });
+    this.initFrete();
+  }
+
+  public initFrete() {
+    this.freteServices.calcularFrete().subscribe((resp: number)=>{
+      this.fretePedido = resp;
+      this.totalFrete = 0;
     });
   }
 
@@ -49,6 +62,7 @@ export class NovoPedidoComponent implements OnInit {
       this.produtosSelecionado.push(produto)
 
     this.totalItens += produto.precoUnitario;
+    this.totalFrete += this.fretePedido;
     this.produtoSelecionado = new Produto();
   }
 
@@ -72,7 +86,14 @@ export class NovoPedidoComponent implements OnInit {
     });
 
     this.clienteSelecionado = new Cliente();
+    this.initFrete();
     this.cleanProduto();
+  }
+
+  public removeProduto(item){
+    this.produtosSelecionado.splice(this.produtosSelecionado.indexOf(item),1);
+    this.totalItens -= (item.quantidade * item.precoUnitario);
+    this.totalFrete -= (item.quantidade * this.fretePedido);
   }
 
 }

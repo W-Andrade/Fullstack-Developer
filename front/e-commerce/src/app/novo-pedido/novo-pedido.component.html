@@ -15,7 +15,6 @@
                 <select class="form-control"  
                         [(ngModel)]="clienteSelecionado" 
                         [ngModelOptions]="{standalone: true}">
-                    <option value="" selected>Cliente</option>
                     <option *ngFor="let cliente of clientes" [ngValue]="cliente">
                         {{ cliente.nome }}
                     </option>
@@ -75,7 +74,7 @@
                         </div>
                     </div>
                     <div class="col-1 d-flex flex-row-reverse p-2">
-                        <a class="item-middle">
+                        <a class="item-middle" (click)="removeProduto(item)">
                             <img class="icon" src="assets/img/icones/icone-apagar.png"alt="icon name">
                         </a>
                     </div>
