@@ -58,15 +58,15 @@ Para executar o serviço angular basta utilizar o comando ng serve do angular cl
 
 1. Entre na pasta do front/e-commerce:
   
-  cd <path-local>front/e-commerce.
+  - cd <path-local>front/e-commerce.
   
 2. Execute o install do npm:
 
-  npm install
+  - npm install
 
 3. E por fim start o serve
   
-  ng serve
+  - ng serve
 
 
  
