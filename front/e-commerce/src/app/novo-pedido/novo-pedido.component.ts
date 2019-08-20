@@ -88,6 +88,7 @@ export class NovoPedidoComponent implements OnInit {
     this.clienteSelecionado = new Cliente();
     this.initFrete();
     this.cleanProduto();
+    confirm("Pedido salvo com sucesso!");
   }
 
   public removeProduto(item){
